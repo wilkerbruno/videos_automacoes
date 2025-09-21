@@ -1,0 +1,333 @@
+2025-09-17 15:26:27,725 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-17 15:26:27,795 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-17 15:26:29,650 - app - INFO - app.py:54 - Social Media Automation System initialized successfully
+2025-09-17 15:26:29,653 - __main__ - ERROR - run.py:68 - Application startup failed: 'PostScheduler' object has no attribute 'start'
+2025-09-17 15:27:03,762 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-17 15:27:03,768 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-17 15:27:04,783 - app - INFO - app.py:54 - Social Media Automation System initialized successfully
+2025-09-17 15:27:04,784 - __main__ - ERROR - run.py:68 - Application startup failed: 'PostScheduler' object has no attribute 'start'
+2025-09-17 15:36:12,128 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-17 15:36:12,150 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-17 15:36:13,308 - app - INFO - app.py:54 - Social Media Automation System initialized successfully
+2025-09-17 15:36:13,309 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-17 15:36:13,310 - __main__ - INFO - run.py:53 - Starting Social Media Automation System
+2025-09-17 15:36:13,310 - __main__ - INFO - run.py:54 - Debug mode: True
+2025-09-17 15:36:13,310 - __main__ - INFO - run.py:55 - Upload folder: uploads
+2025-09-17 15:36:13,313 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-17 15:36:13,313 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-17 15:36:13,313 - app - INFO - app.py:728 - Application context initialized successfully
+2025-09-17 15:36:13,314 - app - INFO - app.py:740 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-09-17 15:36:13,314 - app - INFO - app.py:741 - Debug mode: True
+2025-09-17 15:36:13,315 - app - INFO - app.py:742 - Upload folder: uploads
+2025-09-17 15:36:14,325 - werkzeug - INFO - _internal.py:96 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.7:5000
+2025-09-17 15:36:14,325 - werkzeug - INFO - _internal.py:96 - [33mPress CTRL+C to quit[0m
+2025-09-17 15:36:14,330 - werkzeug - INFO - _internal.py:96 -  * Restarting with stat
+2025-09-17 15:36:18,147 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-17 15:36:18,151 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-17 15:36:19,430 - app - INFO - app.py:54 - Social Media Automation System initialized successfully
+2025-09-17 15:36:19,431 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-17 15:36:19,432 - __main__ - INFO - run.py:53 - Starting Social Media Automation System
+2025-09-17 15:36:19,432 - __main__ - INFO - run.py:54 - Debug mode: True
+2025-09-17 15:36:19,433 - __main__ - INFO - run.py:55 - Upload folder: uploads
+2025-09-17 15:36:19,435 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-17 15:36:19,436 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-17 15:36:19,436 - app - INFO - app.py:728 - Application context initialized successfully
+2025-09-17 15:36:19,437 - app - INFO - app.py:740 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-09-17 15:36:19,437 - app - INFO - app.py:741 - Debug mode: True
+2025-09-17 15:36:19,438 - app - INFO - app.py:742 - Upload folder: uploads
+2025-09-17 15:36:19,454 - werkzeug - WARNING - _internal.py:96 -  * Debugger is active!
+2025-09-17 15:36:19,463 - werkzeug - INFO - _internal.py:96 -  * Debugger PIN: 372-696-833
+2025-09-17 15:36:23,694 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 15:36:23] "GET / HTTP/1.1" 200 -
+2025-09-17 15:36:24,046 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 15:36:24] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-09-17 15:36:24,196 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 15:36:24] "GET /static/js/app.js HTTP/1.1" 200 -
+2025-09-17 15:36:26,254 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 15:36:26] "GET /api/accounts/status HTTP/1.1" 200 -
+2025-09-17 15:36:29,056 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 15:36:29] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-09-17 15:51:09,567 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 15:51:09] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-09-17 15:51:09,571 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 15:51:09] "[33mGET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1[0m" 404 -
+2025-09-17 15:58:55,043 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 15:58:55] "GET / HTTP/1.1" 200 -
+2025-09-17 15:58:55,125 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 15:58:55] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-09-17 15:58:55,210 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 15:58:55] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2025-09-17 15:58:56,251 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 15:58:56] "GET /api/accounts/status HTTP/1.1" 200 -
+2025-09-17 16:15:21,639 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 16:15:21] "[31m[1mPOST /api/accounts/connect HTTP/1.1[0m" 400 -
+2025-09-17 16:15:28,763 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 16:15:28] "[31m[1mPOST /api/accounts/connect HTTP/1.1[0m" 400 -
+2025-09-17 16:30:47,627 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 16:30:47] "POST /api/accounts/connect HTTP/1.1" 200 -
+2025-09-17 16:51:56,702 - models.database - ERROR - database.py:117 - Database operation failed: 'sqlite3.Connection' object has no attribute 'rowcount'
+2025-09-17 16:51:56,778 - models.database - ERROR - database.py:244 - Failed to update post 40ab1178-c646-44d8-a158-eb13bac6d7a7: 'sqlite3.Connection' object has no attribute 'rowcount'
+2025-09-17 16:51:56,935 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 16:51:56] "POST /api/upload HTTP/1.1" 200 -
+2025-09-17 17:14:25,628 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 17:14:25] "[31m[1mPOST /api/upload HTTP/1.1[0m" 400 -
+2025-09-17 17:14:34,667 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 17:14:34] "[31m[1mPOST /api/upload HTTP/1.1[0m" 400 -
+2025-09-17 17:14:49,535 - models.database - ERROR - database.py:117 - Database operation failed: 'sqlite3.Connection' object has no attribute 'rowcount'
+2025-09-17 17:14:49,536 - models.database - ERROR - database.py:244 - Failed to update post 739eb675-50c6-42a5-b1d2-a5be3c757ffe: 'sqlite3.Connection' object has no attribute 'rowcount'
+2025-09-17 17:14:49,550 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [17/Sep/2025 17:14:49] "POST /api/upload HTTP/1.1" 200 -
+2025-09-17 18:05:05,417 - werkzeug - INFO - _internal.py:96 -  * Detected change in 'C:\\Users\\wilker.gandra\\Documents\\GitHub\\videos_automacoes\\models\\database.py', reloading
+2025-09-17 18:05:05,463 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-17 18:05:05,470 - app - INFO - app.py:755 - Application shutdown complete
+2025-09-17 18:05:05,474 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-17 18:05:10,125 - werkzeug - INFO - _internal.py:96 -  * Restarting with stat
+2025-09-17 18:05:27,320 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-17 18:05:27,330 - app - INFO - app.py:755 - Application shutdown complete
+2025-09-17 18:05:27,336 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-17 21:16:20,242 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-17 21:16:20,269 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-17 21:16:22,012 - __main__ - ERROR - run.py:68 - Application startup failed: name 'app' is not defined
+2025-09-17 21:17:36,156 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-17 21:17:36,160 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-17 21:17:37,192 - __main__ - ERROR - run.py:68 - Application startup failed: name 'app' is not defined
+2025-09-17 21:21:19,296 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-17 21:21:19,333 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-18 14:09:25,534 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-18 14:09:25,555 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-18 14:16:24,179 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-18 14:16:24,201 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-18 14:20:01,684 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-18 14:20:01,709 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-18 14:20:02,912 - app - INFO - app.py:54 - Social Media Automation System initialized successfully
+2025-09-18 14:20:02,934 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-18 14:20:03,707 - app - INFO - app.py:54 - Social Media Automation System initialized successfully
+2025-09-18 14:20:03,708 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-18 14:20:03,709 - __main__ - INFO - run.py:55 - Starting Social Media Automation System
+2025-09-18 14:20:03,709 - __main__ - INFO - run.py:56 - Debug mode: False
+2025-09-18 14:20:03,709 - __main__ - INFO - run.py:57 - Upload folder: uploads
+2025-09-18 14:20:03,712 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-18 14:20:03,712 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-18 14:20:03,712 - app - INFO - app.py:763 - Application context initialized successfully
+2025-09-18 14:20:03,713 - app - INFO - app.py:775 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-09-18 14:20:03,713 - app - INFO - app.py:776 - Debug mode: False
+2025-09-18 14:20:03,713 - app - INFO - app.py:777 - Upload folder: uploads
+2025-09-18 14:20:04,785 - werkzeug - INFO - _internal.py:96 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.7:5000
+2025-09-18 14:20:04,786 - werkzeug - INFO - _internal.py:96 - [33mPress CTRL+C to quit[0m
+2025-09-18 14:21:18,053 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-18 14:21:18,054 - app - INFO - app.py:790 - Application shutdown complete
+2025-09-18 14:21:18,055 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-18 14:21:18,058 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-18 14:21:18,059 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-18 14:21:18,059 - app - INFO - app.py:763 - Application context initialized successfully
+2025-09-18 14:21:18,059 - app - INFO - app.py:775 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-09-18 14:21:18,060 - app - INFO - app.py:776 - Debug mode: False
+2025-09-18 14:21:18,060 - app - INFO - app.py:777 - Upload folder: uploads
+2025-09-18 14:21:18,917 - werkzeug - INFO - _internal.py:96 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.7:5000
+2025-09-18 14:21:18,919 - werkzeug - INFO - _internal.py:96 - [33mPress CTRL+C to quit[0m
+2025-09-18 14:21:23,514 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-18 14:21:23,514 - app - INFO - app.py:790 - Application shutdown complete
+2025-09-18 14:21:37,906 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-18 14:21:37,911 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-18 14:21:39,454 - app - INFO - app.py:54 - Social Media Automation System initialized successfully
+2025-09-18 14:21:39,461 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-18 14:21:40,143 - app - INFO - app.py:54 - Social Media Automation System initialized successfully
+2025-09-18 14:21:40,144 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-18 14:21:40,144 - __main__ - INFO - run.py:55 - Starting Social Media Automation System
+2025-09-18 14:21:40,145 - __main__ - INFO - run.py:56 - Debug mode: False
+2025-09-18 14:21:40,145 - __main__ - INFO - run.py:57 - Upload folder: uploads
+2025-09-18 14:21:40,148 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-18 14:21:40,148 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-18 14:21:40,149 - app - INFO - app.py:763 - Application context initialized successfully
+2025-09-18 14:21:40,149 - app - INFO - app.py:775 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-09-18 14:21:40,149 - app - INFO - app.py:776 - Debug mode: False
+2025-09-18 14:21:40,150 - app - INFO - app.py:777 - Upload folder: uploads
+2025-09-18 14:21:41,054 - werkzeug - INFO - _internal.py:96 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.7:5000
+2025-09-18 14:21:41,055 - werkzeug - INFO - _internal.py:96 - [33mPress CTRL+C to quit[0m
+2025-09-18 14:21:45,029 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [18/Sep/2025 14:21:45] "GET / HTTP/1.1" 200 -
+2025-09-18 14:21:45,419 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [18/Sep/2025 14:21:45] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-09-18 14:21:45,517 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [18/Sep/2025 14:21:45] "GET /static/js/app.js HTTP/1.1" 200 -
+2025-09-18 14:21:47,629 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [18/Sep/2025 14:21:47] "GET /api/accounts/status HTTP/1.1" 200 -
+2025-09-18 14:34:54,847 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [18/Sep/2025 14:34:54] "POST /api/accounts/connect HTTP/1.1" 200 -
+2025-09-18 14:35:44,328 - openai._base_client - INFO - _base_client.py:1058 - Retrying request to /chat/completions in 0.482783 seconds
+2025-09-18 14:35:44,873 - openai._base_client - INFO - _base_client.py:1058 - Retrying request to /chat/completions in 0.957604 seconds
+2025-09-18 14:35:45,895 - services.ai_service - ERROR - ai_service.py:85 - AI content generation failed: Connection error.
+2025-09-18 14:35:45,952 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [18/Sep/2025 14:35:45] "POST /api/upload HTTP/1.1" 200 -
+2025-09-18 14:36:45,248 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [18/Sep/2025 14:36:45] "POST /api/upload HTTP/1.1" 200 -
+2025-09-18 15:29:10,132 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-18 15:29:10,157 - app - INFO - app.py:790 - Application shutdown complete
+2025-09-18 15:29:10,162 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-18 15:29:10,229 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-18 15:29:10,231 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-18 15:29:10,231 - app - INFO - app.py:763 - Application context initialized successfully
+2025-09-18 15:29:10,232 - app - INFO - app.py:775 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-09-18 15:29:10,233 - app - INFO - app.py:776 - Debug mode: False
+2025-09-18 15:29:10,233 - app - INFO - app.py:777 - Upload folder: uploads
+2025-09-18 15:29:11,473 - werkzeug - INFO - _internal.py:96 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.7:5000
+2025-09-18 15:29:11,474 - werkzeug - INFO - _internal.py:96 - [33mPress CTRL+C to quit[0m
+2025-09-18 15:29:14,538 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-18 15:29:14,539 - app - INFO - app.py:790 - Application shutdown complete
+2025-09-18 15:29:41,854 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-18 15:29:41,863 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-18 15:29:43,209 - app - INFO - app.py:54 - Social Media Automation System initialized successfully
+2025-09-18 15:29:43,216 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-18 15:29:43,871 - app - INFO - app.py:54 - Social Media Automation System initialized successfully
+2025-09-18 15:29:43,872 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-18 15:29:43,873 - __main__ - INFO - run.py:55 - Starting Social Media Automation System
+2025-09-18 15:29:43,873 - __main__ - INFO - run.py:56 - Debug mode: False
+2025-09-18 15:29:43,874 - __main__ - INFO - run.py:57 - Upload folder: uploads
+2025-09-18 15:29:43,876 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-18 15:29:43,877 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-18 15:29:43,877 - app - INFO - app.py:763 - Application context initialized successfully
+2025-09-18 15:29:43,878 - app - INFO - app.py:775 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-09-18 15:29:43,879 - app - INFO - app.py:776 - Debug mode: False
+2025-09-18 15:29:43,879 - app - INFO - app.py:777 - Upload folder: uploads
+2025-09-18 15:29:44,773 - werkzeug - INFO - _internal.py:96 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.7:5000
+2025-09-18 15:29:44,773 - werkzeug - INFO - _internal.py:96 - [33mPress CTRL+C to quit[0m
+2025-09-18 15:30:14,227 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [18/Sep/2025 15:30:14] "GET / HTTP/1.1" 200 -
+2025-09-18 15:30:14,776 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [18/Sep/2025 15:30:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-09-18 15:30:14,928 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [18/Sep/2025 15:30:14] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2025-09-18 15:30:17,415 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [18/Sep/2025 15:30:17] "GET /api/accounts/status HTTP/1.1" 200 -
+2025-09-18 15:36:53,039 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [18/Sep/2025 15:36:53] "POST /api/accounts/connect HTTP/1.1" 200 -
+2025-09-18 15:37:28,855 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [18/Sep/2025 15:37:28] "POST /api/upload HTTP/1.1" 200 -
+2025-09-19 09:19:04,564 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 09:19:04] "GET / HTTP/1.1" 200 -
+2025-09-19 09:19:05,275 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 09:19:05] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-09-19 09:19:05,471 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 09:19:05] "GET /static/js/app.js HTTP/1.1" 200 -
+2025-09-19 09:19:09,346 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 09:19:09] "GET /api/accounts/status HTTP/1.1" 200 -
+2025-09-19 09:19:20,087 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 09:19:20] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-09-19 09:23:24,215 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 09:23:24] "GET / HTTP/1.1" 200 -
+2025-09-19 09:23:24,759 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 09:23:24] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-09-19 09:23:24,795 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 09:23:24] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2025-09-19 09:23:26,201 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 09:23:26] "GET /api/accounts/status HTTP/1.1" 200 -
+2025-09-19 09:23:42,503 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-19 09:23:42,506 - app - INFO - app.py:790 - Application shutdown complete
+2025-09-19 09:23:42,514 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-19 09:23:42,615 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-19 09:23:42,620 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-19 09:23:42,620 - app - INFO - app.py:763 - Application context initialized successfully
+2025-09-19 09:23:42,621 - app - INFO - app.py:775 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-09-19 09:23:42,622 - app - INFO - app.py:776 - Debug mode: False
+2025-09-19 09:23:42,623 - app - INFO - app.py:777 - Upload folder: uploads
+2025-09-19 09:23:43,863 - werkzeug - INFO - _internal.py:96 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.7:5000
+2025-09-19 09:23:43,864 - werkzeug - INFO - _internal.py:96 - [33mPress CTRL+C to quit[0m
+2025-09-19 09:26:08,456 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 09:26:08] "GET / HTTP/1.1" 200 -
+2025-09-19 09:26:08,545 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 09:26:08] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2025-09-19 09:26:08,568 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 09:26:08] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-09-19 09:26:10,297 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 09:26:10] "GET /api/accounts/status HTTP/1.1" 200 -
+2025-09-19 09:28:19,577 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 09:28:19] "GET / HTTP/1.1" 200 -
+2025-09-19 09:28:19,886 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 09:28:19] "[36mGET /static/js/app.js HTTP/1.1[0m" 304 -
+2025-09-19 09:28:19,917 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 09:28:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-09-19 09:28:21,679 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 09:28:21] "GET /api/accounts/status HTTP/1.1" 200 -
+2025-09-19 11:30:19,167 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-19 11:30:19,196 - app - INFO - app.py:790 - Application shutdown complete
+2025-09-19 11:31:24,892 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-19 11:31:24,915 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-19 11:31:26,358 - app - INFO - app.py:54 - Social Media Automation System initialized successfully
+2025-09-19 11:31:26,388 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-19 11:31:27,008 - app - INFO - app.py:54 - Social Media Automation System initialized successfully
+2025-09-19 11:31:27,009 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-19 11:31:27,010 - __main__ - INFO - run.py:55 - Starting Social Media Automation System
+2025-09-19 11:31:27,010 - __main__ - INFO - run.py:56 - Debug mode: False
+2025-09-19 11:31:27,010 - __main__ - INFO - run.py:57 - Upload folder: uploads
+2025-09-19 11:31:27,012 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-19 11:31:27,013 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-19 11:31:27,014 - app - INFO - app.py:763 - Application context initialized successfully
+2025-09-19 11:31:27,015 - app - INFO - app.py:775 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-09-19 11:31:27,016 - app - INFO - app.py:776 - Debug mode: False
+2025-09-19 11:31:27,016 - app - INFO - app.py:777 - Upload folder: uploads
+2025-09-19 11:31:28,030 - werkzeug - INFO - _internal.py:96 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.7:5000
+2025-09-19 11:31:28,033 - werkzeug - INFO - _internal.py:96 - [33mPress CTRL+C to quit[0m
+2025-09-19 11:32:52,389 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-19 11:32:52,397 - app - INFO - app.py:790 - Application shutdown complete
+2025-09-19 11:32:52,398 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-19 11:32:52,422 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-19 11:32:52,423 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-19 11:32:52,423 - app - INFO - app.py:763 - Application context initialized successfully
+2025-09-19 11:32:52,423 - app - INFO - app.py:775 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-09-19 11:32:52,423 - app - INFO - app.py:776 - Debug mode: False
+2025-09-19 11:32:52,424 - app - INFO - app.py:777 - Upload folder: uploads
+2025-09-19 11:32:53,320 - werkzeug - INFO - _internal.py:96 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.7:5000
+2025-09-19 11:32:53,321 - werkzeug - INFO - _internal.py:96 - [33mPress CTRL+C to quit[0m
+2025-09-19 11:32:55,367 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-19 11:32:55,368 - app - INFO - app.py:790 - Application shutdown complete
+2025-09-19 11:33:26,495 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-19 11:33:26,499 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-19 11:33:28,136 - app - INFO - app.py:54 - Social Media Automation System initialized successfully
+2025-09-19 11:33:28,143 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-19 11:33:28,779 - app - INFO - app.py:54 - Social Media Automation System initialized successfully
+2025-09-19 11:33:28,780 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-19 11:33:28,780 - __main__ - INFO - run.py:55 - Starting Social Media Automation System
+2025-09-19 11:33:28,781 - __main__ - INFO - run.py:56 - Debug mode: False
+2025-09-19 11:33:28,781 - __main__ - INFO - run.py:57 - Upload folder: uploads
+2025-09-19 11:33:28,783 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-19 11:33:28,783 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-19 11:33:28,784 - app - INFO - app.py:763 - Application context initialized successfully
+2025-09-19 11:33:28,784 - app - INFO - app.py:775 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-09-19 11:33:28,785 - app - INFO - app.py:776 - Debug mode: False
+2025-09-19 11:33:28,785 - app - INFO - app.py:777 - Upload folder: uploads
+2025-09-19 11:33:29,669 - werkzeug - INFO - _internal.py:96 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.7:5000
+2025-09-19 11:33:29,669 - werkzeug - INFO - _internal.py:96 - [33mPress CTRL+C to quit[0m
+2025-09-19 11:33:35,511 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 11:33:35] "GET / HTTP/1.1" 200 -
+2025-09-19 11:33:35,969 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 11:33:35] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-09-19 11:33:36,240 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 11:33:36] "GET /static/js/app.js HTTP/1.1" 200 -
+2025-09-19 11:33:38,413 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 11:33:38] "GET /api/accounts/status HTTP/1.1" 200 -
+2025-09-19 11:34:28,765 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 11:34:28] "POST /api/accounts/connect HTTP/1.1" 200 -
+2025-09-19 11:37:31,331 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [19/Sep/2025 11:37:31] "POST /api/upload HTTP/1.1" 200 -
+2025-09-20 10:33:22,724 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [20/Sep/2025 10:33:22] "GET / HTTP/1.1" 200 -
+2025-09-20 10:33:23,948 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [20/Sep/2025 10:33:23] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-09-20 10:33:24,130 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [20/Sep/2025 10:33:24] "GET /static/js/app.js HTTP/1.1" 200 -
+2025-09-20 10:33:25,675 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [20/Sep/2025 10:33:25] "GET /api/accounts/status HTTP/1.1" 200 -
+2025-09-20 10:33:25,791 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [20/Sep/2025 10:33:25] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-09-20 10:33:45,026 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-20 10:33:45,037 - app - INFO - app.py:790 - Application shutdown complete
+2025-09-20 10:33:45,050 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-20 10:33:45,328 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-20 10:33:45,335 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-20 10:33:45,348 - app - INFO - app.py:763 - Application context initialized successfully
+2025-09-20 10:33:45,368 - app - INFO - app.py:775 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-09-20 10:33:45,373 - app - INFO - app.py:776 - Debug mode: False
+2025-09-20 10:33:45,379 - app - INFO - app.py:777 - Upload folder: uploads
+2025-09-20 10:33:47,251 - werkzeug - INFO - _internal.py:96 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.7:5000
+2025-09-20 10:33:47,252 - werkzeug - INFO - _internal.py:96 - [33mPress CTRL+C to quit[0m
+2025-09-20 10:33:52,291 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-20 10:33:52,292 - app - INFO - app.py:790 - Application shutdown complete
+2025-09-21 08:56:19,325 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-21 08:56:19,405 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-21 08:56:33,037 - app - INFO - app.py:54 - Social Media Automation System initialized successfully
+2025-09-21 08:56:33,119 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-21 08:56:39,641 - app - INFO - app.py:54 - Social Media Automation System initialized successfully
+2025-09-21 08:56:39,733 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-21 08:56:39,807 - __main__ - INFO - run.py:55 - Starting Social Media Automation System
+2025-09-21 08:56:39,923 - __main__ - INFO - run.py:56 - Debug mode: False
+2025-09-21 08:56:39,923 - __main__ - INFO - run.py:57 - Upload folder: uploads
+2025-09-21 08:56:39,927 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-21 08:56:39,928 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-21 08:56:39,929 - app - INFO - app.py:763 - Application context initialized successfully
+2025-09-21 08:56:39,929 - app - INFO - app.py:775 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-09-21 08:56:39,930 - app - INFO - app.py:776 - Debug mode: False
+2025-09-21 08:56:39,930 - app - INFO - app.py:777 - Upload folder: uploads
+2025-09-21 08:56:42,228 - werkzeug - INFO - _internal.py:96 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.7:5000
+2025-09-21 08:56:42,479 - werkzeug - INFO - _internal.py:96 - [33mPress CTRL+C to quit[0m
+2025-09-21 08:57:06,112 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [21/Sep/2025 08:57:06] "GET / HTTP/1.1" 200 -
+2025-09-21 08:57:07,594 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [21/Sep/2025 08:57:07] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-09-21 08:57:07,628 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [21/Sep/2025 08:57:07] "GET /static/js/app.js HTTP/1.1" 200 -
+2025-09-21 08:57:09,707 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [21/Sep/2025 08:57:09] "GET /api/accounts/status HTTP/1.1" 200 -
+2025-09-21 08:57:13,642 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [21/Sep/2025 08:57:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -

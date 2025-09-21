@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Automation</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-share-alt"></i>
+                <h1>Social Media Automation</h1>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" data-section="upload">
+                    <i class="fas fa-upload"></i> Upload
+                </button>
+                <button class="nav-btn" data-section="accounts">
+                    <i class="fas fa-users"></i> Contas
+                </button>
+                <button class="nav-btn" data-section="schedule">
+                    <i class="fas fa-calendar"></i> Agendamentos
+                </button>
+                <button class="nav-btn" data-section="analytics">
+                    <i class="fas fa-chart-bar"></i> Analytics
+                </button>
+            </nav>
+        </header>
+
+        <!-- Upload Section -->
+        <section id="upload" class="section active">
+            <div class="section-header">
+                <h2><i class="fas fa-upload"></i> Upload de Vídeos</h2>
+                <p>Faça upload dos seus vídeos e configure as postagens automáticas</p>
+            </div>
+
+            <div class="upload-card">
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h3>Arraste seus vídeos aqui</h3>
+                            <p>ou <span class="upload-link">clique para selecionar</span></p>
+                            <small>Formatos suportados: MP4, MOV, AVI (máx. 500MB)</small>
+                        </div>
+                        <input type="file" id="videoInput" multiple accept="video/*" hidden>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="videoTitle">Título do Vídeo</label>
+                        <input type="text" id="videoTitle" placeholder="Digite o título do vídeo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="videoCategory">Categoria/Nicho</label>
+                        <select id="videoCategory" class="custom-select">
+                            <option value="">Selecione uma categoria</option>
+                            <option value="entretenimento">Entretenimento</option>
+                            <option value="educacao">Educação</option>
+                            <option value="tecnologia">Tecnologia</option>
+                            <option value="lifestyle">Lifestyle</option>
+                            <option value="humor">Humor</option>
+                            <option value="musica">Música</option>
+                            <option value="esportes">Esportes</option>
+                            <option value="games">Games</option>
+                        </select>
+                    </div>
+
+                    <div class="platforms-selection">
+                        <h3>Plataformas de Destino</h3>
+                        <div class="platform-cards">
+                            <div class="platform-card" data-platform="youtube">
+                                <i class="fab fa-youtube"></i>
+                                <span>YouTube</span>
+                                <input type="checkbox" class="platform-checkbox" value="youtube">
+                            </div>
+                            <div class="platform-card" data-platform="instagram">
+                                <i class="fab fa-instagram"></i>
+                                <span>Instagram</span>
+                                <input type="checkbox" class="platform-checkbox" value="instagram">
+                            </div>
+                            <div class="platform-card" data-platform="tiktok">
+                                <i class="fab fa-tiktok"></i>
+                                <span>TikTok</span>
+                                <input type="checkbox" class="platform-checkbox" value="tiktok">
+                            </div>
+                            <div class="platform-card" data-platform="kawai">
+                                <i class="fas fa-heart"></i>
+                                <span>Kawai</span>
+                                <input type="checkbox" class="platform-checkbox" value="kawai">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="generateContent"> 
+                            Gerar automaticamente hashtags e descrição com IA
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="scheduleTime">Agendamento (opcional)</label>
+                        <input type="datetime-local" id="scheduleTime">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Processar e Postar
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Accounts Section -->
+        <section id="accounts" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-users"></i> Gerenciar Contas</h2>
+                <p>Configure suas contas das redes sociais</p>
+            </div>
+
+            <div class="accounts-grid">
+                <div class="account-card youtube">
+                    <div class="account-header">
+                        <i class="fab fa-youtube"></i>
+                        <h3>YouTube</h3>
+                        <span class="status disconnected">Desconectado</span>
+                    </div>
+                    <button class="btn btn-connect" data-platform="youtube">
+                        <i class="fas fa-link"></i> Conectar Conta
+                    </button>
+                </div>
+
+                <div class="account-card instagram">
+                    <div class="account-header">
+                        <i class="fab fa-instagram"></i>
+                        <h3>Instagram</h3>
+                        <span class="status disconnected">Desconectado</span>
+                    </div>
+                    <button class="btn btn-connect" data-platform="instagram">
+                        <i class="fas fa-link"></i> Conectar Conta
+                    </button>
+                </div>
+
+                <div class="account-card tiktok">
+                    <div class="account-header">
+                        <i class="fab fa-tiktok"></i>
+                        <h3>TikTok</h3>
+                        <span class="status disconnected">Desconectado</span>
+                    </div>
+                    <button class="btn btn-connect" data-platform="tiktok">
+                        <i class="fas fa-link"></i> Conectar Conta
+                    </button>
+                </div>
+
+                <div class="account-card kawai">
+                    <div class="account-header">
+                        <i class="fas fa-heart"></i>
+                        <h3>Kawai</h3>
+                        <span class="status disconnected">Desconectado</span>
+                    </div>
+                    <button class="btn btn-connect" data-platform="kawai">
+                        <i class="fas fa-link"></i> Conectar Conta
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Schedule Section -->
+        <section id="schedule" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-calendar"></i> Agendamentos</h2>
+                <p>Visualize e gerencie seus posts agendados</p>
+            </div>
+
+            <div class="schedule-container">
+                <div class="schedule-filters">
+                    <select id="platformFilter">
+                        <option value="">Todas as plataformas</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="tiktok">TikTok</option>
+                        <option value="kawai">Kawai</option>
+                    </select>
+                    <input type="date" id="dateFilter">
+                </div>
+
+                <div class="schedule-list" id="scheduleList">
+                    <!-- Schedule items will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics" class="section">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> Analytics</h2>
+                <p>Acompanhe o desempenho das suas postagens</p>
+            </div>
+
+            <div class="analytics-cards">
+                <div class="analytics-card">
+                    <div class="analytics-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="analytics-content">
+                        <h3 id="totalViews">0</h3>
+                        <p>Total de Visualizações</p>
+                    </div>
+                </div>
+                <div class="analytics-card">
+                    <div class="analytics-icon">
+                        <i class="fas fa-thumbs-up"></i>
+                    </div>
+                    <div class="analytics-content">
+                        <h3 id="totalLikes">0</h3>
+                        <p>Total de Curtidas</p>
+                    </div>
+                </div>
+                <div class="analytics-card">
+                    <div class="analytics-icon">
+                        <i class="fas fa-share"></i>
+                    </div>
+                    <div class="analytics-content">
+                        <h3 id="totalShares">0</h3>
+                        <p>Total de Compartilhamentos</p>
+                    </div>
+                </div>
+                <div class="analytics-card">
+                    <div class="analytics-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="analytics-content">
+                        <h3 id="totalPosts">0</h3>
+                        <p>Posts Publicados</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="performanceChart"></canvas>
+            </div>
+        </section>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Processando seu vídeo...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Modal for Account Connection -->
+    <div class="modal" id="accountModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Conectar Conta</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="static/js/app.js"></script>
+</body>
+</html>
