@@ -24,6 +24,11 @@ from utils.config import Config
 from utils.validators import ValidationService
 from utils.logger import setup_logging
 
+import asyncio
+import logging
+from typing import Dict, List, Optional, Any
+
+
 # Setup logging
 setup_logging()
 logger = logging.getLogger(__name__)
@@ -130,20 +135,15 @@ class SocialMediaApp:
                 
                 if generate_content:
                     try:
-                        # Run async function in sync context
-                        loop = asyncio.new_event_loop()
-                        asyncio.set_event_loop(loop)
                         
-                        ai_content = loop.run_until_complete(
-                            self.ai_service.generate_viral_content(
-                                title=title,
-                                category=category,
-                                platforms=platforms,
-                                video_duration=processed_files[0]['analysis']['duration'] if processed_files else None
-                            )
+                        ai_content = asyncio.run(
+                        self.ai_service.generate_viral_content(
+                        title=title,
+                        category=category,
+                        platforms=platforms,
+                        video_duration=processed_files[0]['analysis']['duration'] if processed_files else None
                         )
-                        
-                        loop.close()
+                    )
                         
                         hashtags = ai_content.get('hashtags', [])
                         description = ai_content.get('description', '')

@@ -331,3 +331,69 @@
 2025-09-21 08:57:07,628 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [21/Sep/2025 08:57:07] "GET /static/js/app.js HTTP/1.1" 200 -
 2025-09-21 08:57:09,707 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [21/Sep/2025 08:57:09] "GET /api/accounts/status HTTP/1.1" 200 -
 2025-09-21 08:57:13,642 - werkzeug - INFO - _internal.py:96 - 127.0.0.1 - - [21/Sep/2025 08:57:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-09-22 23:39:39,188 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-22 23:39:39,206 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-23 13:49:55,795 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-23 13:49:55,814 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-23 13:49:55,815 - services.ai_service - WARNING - ai_service.py:16 - OpenAI API key not configured
+2025-09-23 13:49:55,827 - app - INFO - app.py:59 - Social Media Automation System initialized successfully
+2025-09-23 13:49:55,834 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-23 13:49:55,834 - services.ai_service - WARNING - ai_service.py:16 - OpenAI API key not configured
+2025-09-23 13:49:55,856 - app - INFO - app.py:59 - Social Media Automation System initialized successfully
+2025-09-23 13:49:55,856 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-23 13:49:55,857 - __main__ - INFO - run.py:55 - Starting Social Media Automation System
+2025-09-23 13:49:55,857 - __main__ - INFO - run.py:56 - Debug mode: False
+2025-09-23 13:49:55,858 - __main__ - INFO - run.py:57 - Upload folder: uploads
+2025-09-23 13:49:55,863 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-23 13:49:55,870 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-23 13:49:55,872 - app - INFO - app.py:763 - Application context initialized successfully
+2025-09-23 13:49:55,875 - app - INFO - app.py:775 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-09-23 13:49:55,877 - app - INFO - app.py:776 - Debug mode: False
+2025-09-23 13:49:55,890 - app - INFO - app.py:777 - Upload folder: uploads
+2025-09-23 13:49:55,944 - werkzeug - INFO - _internal.py:187 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.7:5000
+2025-09-23 13:49:55,950 - werkzeug - INFO - _internal.py:187 - [33mPress CTRL+C to quit[0m
+2025-09-23 13:50:38,699 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-23 13:50:38,700 - app - INFO - app.py:790 - Application shutdown complete
+2025-09-23 13:50:38,701 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-23 13:50:38,708 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-23 13:50:38,709 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-23 13:50:38,711 - app - INFO - app.py:763 - Application context initialized successfully
+2025-09-23 13:50:38,713 - app - INFO - app.py:775 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-09-23 13:50:38,715 - app - INFO - app.py:776 - Debug mode: False
+2025-09-23 13:50:38,716 - app - INFO - app.py:777 - Upload folder: uploads
+2025-09-23 13:50:38,752 - werkzeug - INFO - _internal.py:187 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.7:5000
+2025-09-23 13:50:38,753 - werkzeug - INFO - _internal.py:187 - [33mPress CTRL+C to quit[0m
+2025-09-23 13:50:41,812 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-09-23 13:50:41,813 - app - INFO - app.py:790 - Application shutdown complete
+2025-09-23 13:50:53,189 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-09-23 13:50:53,193 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-23 13:50:53,193 - services.ai_service - WARNING - ai_service.py:16 - OpenAI API key not configured
+2025-09-23 13:50:53,207 - app - INFO - app.py:59 - Social Media Automation System initialized successfully
+2025-09-23 13:50:53,213 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-23 13:50:53,213 - services.ai_service - WARNING - ai_service.py:16 - OpenAI API key not configured
+2025-09-23 13:50:53,232 - app - INFO - app.py:59 - Social Media Automation System initialized successfully
+2025-09-23 13:50:53,233 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-23 13:50:53,233 - __main__ - INFO - run.py:55 - Starting Social Media Automation System
+2025-09-23 13:50:53,234 - __main__ - INFO - run.py:56 - Debug mode: False
+2025-09-23 13:50:53,234 - __main__ - INFO - run.py:57 - Upload folder: uploads
+2025-09-23 13:50:53,236 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-09-23 13:50:53,237 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-09-23 13:50:53,237 - app - INFO - app.py:763 - Application context initialized successfully
+2025-09-23 13:50:53,237 - app - INFO - app.py:775 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-09-23 13:50:53,238 - app - INFO - app.py:776 - Debug mode: False
+2025-09-23 13:50:53,238 - app - INFO - app.py:777 - Upload folder: uploads
+2025-09-23 13:50:53,256 - werkzeug - INFO - _internal.py:187 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.7:5000
+2025-09-23 13:50:53,256 - werkzeug - INFO - _internal.py:187 - [33mPress CTRL+C to quit[0m
+2025-09-23 13:50:55,944 - werkzeug - INFO - _internal.py:187 - 127.0.0.1 - - [23/Sep/2025 13:50:55] "GET / HTTP/1.1" 200 -
+2025-09-23 13:50:56,259 - werkzeug - INFO - _internal.py:187 - 127.0.0.1 - - [23/Sep/2025 13:50:56] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-09-23 13:50:56,304 - werkzeug - INFO - _internal.py:187 - 127.0.0.1 - - [23/Sep/2025 13:50:56] "GET /static/js/app.js HTTP/1.1" 200 -
+2025-09-23 13:50:58,099 - werkzeug - INFO - _internal.py:187 - 127.0.0.1 - - [23/Sep/2025 13:50:58] "GET /api/accounts/status HTTP/1.1" 200 -
