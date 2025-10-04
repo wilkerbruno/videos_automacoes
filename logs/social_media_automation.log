@@ -1653,3 +1653,99 @@
 2025-10-04 19:22:17,024 - app - INFO - app.py:777 - Upload folder: uploads
 2025-10-04 19:22:17,050 - werkzeug - WARNING - _internal.py:187 -  * Debugger is active!
 2025-10-04 19:22:17,055 - werkzeug - INFO - _internal.py:187 -  * Debugger PIN: 876-337-494
+2025-10-04 19:30:08,882 - werkzeug - INFO - _internal.py:187 -  * Detected change in 'C:\\Users\\Wilker Gandra\\Documents\\GitHub\\videos_automacoes\\app.py', reloading
+2025-10-04 19:30:08,883 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-10-04 19:30:08,884 - app - INFO - app.py:790 - Application shutdown complete
+2025-10-04 19:30:09,092 - werkzeug - INFO - _internal.py:187 -  * Restarting with stat
+2025-10-04 19:30:11,450 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-10-04 19:30:11,455 - __main__ - WARNING - run.py:53 - Configuration warnings:
+2025-10-04 19:30:11,456 - __main__ - WARNING - run.py:55 -   - Missing API keys for: YouTube, Instagram, TikTok, Kawai
+2025-10-04 19:30:11,457 - __main__ - WARNING - run.py:55 -   - Please change the default JWT_SECRET_KEY in production
+2025-10-04 19:30:11,462 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-10-04 19:30:11,463 - services.ai_service - ERROR - ai_service.py:26 - Failed to initialize OpenAI client: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-10-04 19:30:11,493 - app - INFO - app.py:63 - Social Media Automation System initialized successfully
+2025-10-04 19:30:11,493 - __main__ - INFO - run.py:65 - Starting Social Media Automation System
+2025-10-04 19:30:11,494 - __main__ - INFO - run.py:66 - Host: 0.0.0.0, Port: 5000, Debug: True
+2025-10-04 19:30:11,495 - __main__ - INFO - run.py:67 - Upload folder: uploads
+2025-10-04 19:30:11,495 - __main__ - INFO - run.py:71 - Enabled platforms: None
+2025-10-04 19:30:11,497 - __main__ - WARNING - run.py:74 - No platforms are properly configured. Please check your API keys.
+2025-10-04 19:30:11,509 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-10-04 19:30:11,515 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-10-04 19:30:11,524 - app - INFO - app.py:767 - Application context initialized successfully
+2025-10-04 19:30:11,533 - app - INFO - app.py:779 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-10-04 19:30:11,549 - app - INFO - app.py:780 - Debug mode: True
+2025-10-04 19:30:11,567 - app - INFO - app.py:781 - Upload folder: uploads
+2025-10-04 19:30:11,609 - werkzeug - WARNING - _internal.py:187 -  * Debugger is active!
+2025-10-04 19:30:11,624 - werkzeug - INFO - _internal.py:187 -  * Debugger PIN: 876-337-494
+2025-10-04 19:30:13,767 - werkzeug - INFO - _internal.py:187 -  * Detected change in 'C:\\Users\\Wilker Gandra\\Documents\\GitHub\\videos_automacoes\\run.py', reloading
+2025-10-04 19:30:13,767 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-10-04 19:30:13,767 - app - INFO - app.py:794 - Application shutdown complete
+2025-10-04 19:30:13,978 - werkzeug - INFO - _internal.py:187 -  * Restarting with stat
+2025-10-04 19:30:16,452 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-10-04 19:30:16,454 - __main__ - WARNING - run.py:49 - Configuration warnings:
+2025-10-04 19:30:16,454 - __main__ - WARNING - run.py:51 -   - Missing API keys for: YouTube, Instagram, TikTok, Kawai
+2025-10-04 19:30:16,454 - __main__ - WARNING - run.py:51 -   - Please change the default JWT_SECRET_KEY in production
+2025-10-04 19:30:16,459 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-10-04 19:30:16,460 - services.ai_service - ERROR - ai_service.py:26 - Failed to initialize OpenAI client: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-10-04 19:30:16,487 - app - INFO - app.py:63 - Social Media Automation System initialized successfully
+2025-10-04 19:30:16,487 - __main__ - INFO - run.py:61 - Starting Social Media Automation System
+2025-10-04 19:30:16,488 - __main__ - INFO - run.py:62 - Host: 0.0.0.0, Port: 5000, Debug: True
+2025-10-04 19:30:16,489 - __main__ - INFO - run.py:63 - Upload folder: uploads
+2025-10-04 19:30:16,490 - __main__ - INFO - run.py:67 - Enabled platforms: None
+2025-10-04 19:30:16,491 - __main__ - WARNING - run.py:70 - No platforms are properly configured. Please check your API keys.
+2025-10-04 19:30:16,494 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-10-04 19:30:16,495 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-10-04 19:30:16,495 - app - INFO - app.py:767 - Application context initialized successfully
+2025-10-04 19:30:16,496 - app - INFO - app.py:779 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-10-04 19:30:16,496 - app - INFO - app.py:780 - Debug mode: True
+2025-10-04 19:30:16,496 - app - INFO - app.py:781 - Upload folder: uploads
+2025-10-04 19:30:16,513 - werkzeug - WARNING - _internal.py:187 -  * Debugger is active!
+2025-10-04 19:30:16,519 - werkzeug - INFO - _internal.py:187 -  * Debugger PIN: 876-337-494
+2025-10-04 19:30:48,324 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-10-04 19:30:48,325 - app - INFO - app.py:794 - Application shutdown complete
+2025-10-04 19:30:48,524 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-10-04 19:30:48,524 - app - INFO - app.py:790 - Application shutdown complete
+2025-10-04 19:30:54,477 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-10-04 19:30:54,478 - __main__ - WARNING - run.py:49 - Configuration warnings:
+2025-10-04 19:30:54,478 - __main__ - WARNING - run.py:51 -   - Missing API keys for: YouTube, Instagram, TikTok, Kawai
+2025-10-04 19:30:54,479 - __main__ - WARNING - run.py:51 -   - Please change the default JWT_SECRET_KEY in production
+2025-10-04 19:30:54,482 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-10-04 19:30:54,483 - services.ai_service - ERROR - ai_service.py:26 - Failed to initialize OpenAI client: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-10-04 19:30:54,503 - app - INFO - app.py:63 - Social Media Automation System initialized successfully
+2025-10-04 19:30:54,503 - __main__ - INFO - run.py:61 - Starting Social Media Automation System
+2025-10-04 19:30:54,504 - __main__ - INFO - run.py:62 - Host: 0.0.0.0, Port: 5000, Debug: True
+2025-10-04 19:30:54,504 - __main__ - INFO - run.py:63 - Upload folder: uploads
+2025-10-04 19:30:54,504 - __main__ - INFO - run.py:67 - Enabled platforms: None
+2025-10-04 19:30:54,505 - __main__ - WARNING - run.py:70 - No platforms are properly configured. Please check your API keys.
+2025-10-04 19:30:54,506 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-10-04 19:30:54,508 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-10-04 19:30:54,510 - app - INFO - app.py:767 - Application context initialized successfully
+2025-10-04 19:30:54,511 - app - INFO - app.py:779 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-10-04 19:30:54,512 - app - INFO - app.py:780 - Debug mode: True
+2025-10-04 19:30:54,512 - app - INFO - app.py:781 - Upload folder: uploads
+2025-10-04 19:30:54,540 - werkzeug - INFO - _internal.py:187 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.7:5000
+2025-10-04 19:30:54,543 - werkzeug - INFO - _internal.py:187 - [33mPress CTRL+C to quit[0m
+2025-10-04 19:30:54,547 - werkzeug - INFO - _internal.py:187 -  * Restarting with stat
+2025-10-04 19:30:56,277 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-10-04 19:30:56,278 - __main__ - WARNING - run.py:49 - Configuration warnings:
+2025-10-04 19:30:56,279 - __main__ - WARNING - run.py:51 -   - Missing API keys for: YouTube, Instagram, TikTok, Kawai
+2025-10-04 19:30:56,279 - __main__ - WARNING - run.py:51 -   - Please change the default JWT_SECRET_KEY in production
+2025-10-04 19:30:56,283 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-10-04 19:30:56,284 - services.ai_service - ERROR - ai_service.py:26 - Failed to initialize OpenAI client: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-10-04 19:30:56,305 - app - INFO - app.py:63 - Social Media Automation System initialized successfully
+2025-10-04 19:30:56,306 - __main__ - INFO - run.py:61 - Starting Social Media Automation System
+2025-10-04 19:30:56,306 - __main__ - INFO - run.py:62 - Host: 0.0.0.0, Port: 5000, Debug: True
+2025-10-04 19:30:56,306 - __main__ - INFO - run.py:63 - Upload folder: uploads
+2025-10-04 19:30:56,307 - __main__ - INFO - run.py:67 - Enabled platforms: None
+2025-10-04 19:30:56,307 - __main__ - WARNING - run.py:70 - No platforms are properly configured. Please check your API keys.
+2025-10-04 19:30:56,309 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-10-04 19:30:56,311 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-10-04 19:30:56,313 - app - INFO - app.py:767 - Application context initialized successfully
+2025-10-04 19:30:56,313 - app - INFO - app.py:779 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-10-04 19:30:56,314 - app - INFO - app.py:780 - Debug mode: True
+2025-10-04 19:30:56,314 - app - INFO - app.py:781 - Upload folder: uploads
+2025-10-04 19:30:56,331 - werkzeug - WARNING - _internal.py:187 -  * Debugger is active!
+2025-10-04 19:30:56,335 - werkzeug - INFO - _internal.py:187 -  * Debugger PIN: 876-337-494

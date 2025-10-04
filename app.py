@@ -28,6 +28,10 @@ import asyncio
 import logging
 from typing import Dict, List, Optional, Any
 
+from flask import Flask
+
+app = Flask(__name__)
+
 
 # Setup logging
 setup_logging()
