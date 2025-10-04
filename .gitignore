@@ -1,0 +1,26 @@
+# Environment
+.env
+venv/
+env/
+
+# YouTube
+client_secret.json
+*.pickle
+
+# Uploads
+uploads/
+temp_videos/
+
+# Logs
+logs/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+
+# Database
+*.db
+
+# Backups
+backup_*/

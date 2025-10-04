@@ -1,689 +1,788 @@
-// App State
-const appState = {
-    currentSection: 'upload',
-    connectedAccounts: new Set(),
-    uploadedFiles: [],
-    scheduledPosts: [],
-    analytics: {
-        totalViews: 0,
-        totalLikes: 0,
-        totalShares: 0,
-        totalPosts: 0
-    }
-};
+// static/js/app.js - Enhanced version with AI content preview and better YouTube integration
 
-// DOM Elements
-const DOM = {
-    navButtons: document.querySelectorAll('.nav-btn'),
-    sections: document.querySelectorAll('.section'),
-    uploadForm: document.getElementById('uploadForm'),
-    uploadArea: document.getElementById('uploadArea'),
-    videoInput: document.getElementById('videoInput'),
-    videoTitle: document.getElementById('videoTitle'),
-    videoCategory: document.getElementById('videoCategory'),
-    platformCards: document.querySelectorAll('.platform-card'),
-    platformCheckboxes: document.querySelectorAll('.platform-checkbox'),
-    generateContent: document.getElementById('generateContent'),
-    scheduleTime: document.getElementById('scheduleTime'),
-    loadingOverlay: document.getElementById('loadingOverlay'),
-    toastContainer: document.getElementById('toastContainer'),
-    accountModal: document.getElementById('accountModal'),
-    modalTitle: document.getElementById('modalTitle'),
-    modalBody: document.getElementById('modalBody'),
-    connectButtons: document.querySelectorAll('.btn-connect'),
-    scheduleList: document.getElementById('scheduleList'),
-    platformFilter: document.getElementById('platformFilter'),
-    dateFilter: document.getElementById('dateFilter'),
-    analyticsElements: {
-        totalViews: document.getElementById('totalViews'),
-        totalLikes: document.getElementById('totalLikes'),
-        totalShares: document.getElementById('totalShares'),
-        totalPosts: document.getElementById('totalPosts')
+class SocialMediaApp {
+    constructor() {
+        this.currentSection = 'upload';
+        this.connectedPlatforms = new Set();
+        this.scheduledPosts = [];
+        this.aiContent = null;
+        this.init();
     }
-};
 
-// Utility Functions
-const Utils = {
-    // Format file size
+    init() {
+        this.setupNavigation();
+        this.setupUpload();
+        this.setupPlatformCards();
+        this.setupAccountManagement();
+        this.loadInitialData();
+    }
+
+    setupNavigation() {
+        const navButtons = document.querySelectorAll('.nav-btn');
+        navButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const section = e.currentTarget.dataset.section;
+                this.showSection(section);
+            });
+        });
+    }
+
+    setupUpload() {
+        const uploadArea = document.getElementById('uploadArea');
+        const videoInput = document.getElementById('videoInput');
+        const uploadForm = document.getElementById('uploadForm');
+        const generateContentCheckbox = document.getElementById('generateContent');
+
+        // Drag and drop functionality
+        uploadArea.addEventListener('click', () => videoInput.click());
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            this.handleFileSelection(files);
+        });
+
+        videoInput.addEventListener('change', (e) => {
+            this.handleFileSelection(e.target.files);
+        });
+
+        // Generate content preview when checkbox is checked
+        generateContentCheckbox.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                this.generateContentPreview();
+            } else {
+                this.clearContentPreview();
+            }
+        });
+
+        // Form submission
+        uploadForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleUpload();
+        });
+
+        // Platform selection
+        this.setupPlatformSelection();
+    }
+
+    setupPlatformSelection() {
+        const platformCards = document.querySelectorAll('.platform-card');
+        platformCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const checkbox = card.querySelector('.platform-checkbox');
+                const isSelected = checkbox.checked;
+                
+                checkbox.checked = !isSelected;
+                card.classList.toggle('selected', !isSelected);
+                
+                // Update content preview if AI generation is enabled
+                if (document.getElementById('generateContent').checked) {
+                    this.generateContentPreview();
+                }
+            });
+        });
+    }
+
+    handleFileSelection(files) {
+        const uploadContent = document.querySelector('.upload-content');
+        
+        if (files.length > 0) {
+            const file = files[0];
+            
+            // Validate file
+            if (!this.validateVideoFile(file)) {
+                this.showToast('Please select a valid video file (MP4, MOV, AVI)', 'error');
+                return;
+            }
+
+            // Update UI
+            uploadContent.innerHTML = `
+                <i class="fas fa-video"></i>
+                <h3>${file.name}</h3>
+                <p>Size: ${this.formatFileSize(file.size)}</p>
+                <small>Ready for upload</small>
+            `;
+            
+            // Auto-generate title if empty
+            const titleInput = document.getElementById('videoTitle');
+            if (!titleInput.value) {
+                titleInput.value = file.name.replace(/\.[^/.]+$/, "");
+            }
+        }
+    }
+
+    async generateContentPreview() {
+        const title = document.getElementById('videoTitle').value;
+        const category = document.getElementById('videoCategory').value;
+        const selectedPlatforms = this.getSelectedPlatforms();
+
+        if (!title.trim()) {
+            this.showToast('Please enter a video title first', 'warning');
+            return;
+        }
+
+        if (selectedPlatforms.length === 0) {
+            this.showToast('Please select at least one platform', 'warning');
+            return;
+        }
+
+        this.showLoading('Generating AI content...');
+
+        try {
+            const response = await fetch('/api/generate-content', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title: title,
+                    category: category,
+                    platforms: selectedPlatforms
+                })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                this.aiContent = result.content;
+                this.displayContentPreview(result.content);
+                this.showToast('AI content generated successfully!', 'success');
+            } else {
+                throw new Error(result.error || 'Failed to generate content');
+            }
+        } catch (error) {
+            console.error('Content generation error:', error);
+            this.showToast('Failed to generate AI content: ' + error.message, 'error');
+        } finally {
+            this.hideLoading();
+        }
+    }
+
+    displayContentPreview(content) {
+        // Remove existing preview
+        this.clearContentPreview();
+
+        // Create preview section
+        const uploadCard = document.querySelector('.upload-card');
+        const previewSection = document.createElement('div');
+        previewSection.className = 'ai-content-preview';
+        previewSection.innerHTML = `
+            <div class="preview-header">
+                <h3><i class="fas fa-magic"></i> AI Generated Content Preview</h3>
+                <div class="viral-score">
+                    <span class="score-label">Viral Score:</span>
+                    <span class="score-value">${content.viral_score || 75}/100</span>
+                    <div class="score-bar">
+                        <div class="score-fill" style="width: ${content.viral_score || 75}%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-content">
+                <div class="preview-section">
+                    <label>Generated Description:</label>
+                    <div class="description-preview">${content.description || 'No description generated'}</div>
+                </div>
+
+                <div class="preview-section">
+                    <label>Hashtags:</label>
+                    <div class="hashtags-preview">
+                        ${(content.hashtags || []).map(tag => 
+                            `<span class="hashtag-chip">#${tag}</span>`
+                        ).join('')}
+                    </div>
+                </div>
+
+                ${content.platform_specific ? this.renderPlatformSpecific(content.platform_specific) : ''}
+
+                <div class="preview-actions">
+                    <button type="button" class="btn btn-secondary" onclick="app.editAIContent()">
+                        <i class="fas fa-edit"></i> Edit Content
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="app.regenerateContent()">
+                        <i class="fas fa-refresh"></i> Regenerate
+                    </button>
+                </div>
+            </div>
+        `;
+
+        uploadCard.appendChild(previewSection);
+    }
+
+    renderPlatformSpecific(platformSpecific) {
+        let html = '<div class="platform-specific-content">';
+        
+        Object.keys(platformSpecific).forEach(platform => {
+            const content = platformSpecific[platform];
+            html += `
+                <div class="platform-content" data-platform="${platform}">
+                    <h4><i class="fab fa-${platform}"></i> ${platform.charAt(0).toUpperCase() + platform.slice(1)}</h4>
+                    <div class="platform-details">
+                        ${content.title ? `<p><strong>Title:</strong> ${content.title}</p>` : ''}
+                        ${content.description ? `<p><strong>Description:</strong> ${content.description}</p>` : ''}
+                        ${content.caption ? `<p><strong>Caption:</strong> ${content.caption}</p>` : ''}
+                        ${content.hashtags ? `<p><strong>Hashtags:</strong> ${content.hashtags.join(', ')}</p>` : ''}
+                    </div>
+                </div>
+            `;
+        });
+        
+        html += '</div>';
+        return html;
+    }
+
+    clearContentPreview() {
+        const existingPreview = document.querySelector('.ai-content-preview');
+        if (existingPreview) {
+            existingPreview.remove();
+        }
+    }
+
+    async editAIContent() {
+        // Create modal for editing AI content
+        const modal = this.createEditModal();
+        document.body.appendChild(modal);
+        modal.style.display = 'block';
+    }
+
+    createEditModal() {
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Edit AI Generated Content</h3>
+                    <button class="modal-close" onclick="this.closest('.modal').remove()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Description:</label>
+                        <textarea id="editDescription" rows="4">${this.aiContent?.description || ''}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Hashtags (comma separated):</label>
+                        <input type="text" id="editHashtags" value="${(this.aiContent?.hashtags || []).join(', ')}">
+                    </div>
+                    <div class="modal-actions">
+                        <button class="btn btn-secondary" onclick="this.closest('.modal').remove()">Cancel</button>
+                        <button class="btn btn-primary" onclick="app.saveEditedContent()">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        return modal;
+    }
+
+    saveEditedContent() {
+        const description = document.getElementById('editDescription').value;
+        const hashtags = document.getElementById('editHashtags').value
+            .split(',').map(tag => tag.trim()).filter(tag => tag);
+
+        // Update aiContent
+        if (this.aiContent) {
+            this.aiContent.description = description;
+            this.aiContent.hashtags = hashtags;
+        }
+
+        // Refresh preview
+        this.displayContentPreview(this.aiContent);
+        
+        // Close modal
+        document.querySelector('.modal').remove();
+        
+        this.showToast('Content updated successfully!', 'success');
+    }
+
+    async regenerateContent() {
+        await this.generateContentPreview();
+    }
+
+    async handleUpload() {
+        const form = document.getElementById('uploadForm');
+        const formData = new FormData();
+        
+        // Get form values
+        const title = document.getElementById('videoTitle').value.trim();
+        const category = document.getElementById('videoCategory').value;
+        const selectedPlatforms = this.getSelectedPlatforms();
+        const generateContent = document.getElementById('generateContent').checked;
+        const scheduleTime = document.getElementById('scheduleTime').value;
+        const videoInput = document.getElementById('videoInput');
+
+        // Validation
+        if (!title) {
+            this.showToast('Please enter a video title', 'error');
+            return;
+        }
+
+        if (selectedPlatforms.length === 0) {
+            this.showToast('Please select at least one platform', 'error');
+            return;
+        }
+
+        if (!videoInput.files || videoInput.files.length === 0) {
+            this.showToast('Please select a video file', 'error');
+            return;
+        }
+
+        // Add files
+        Array.from(videoInput.files).forEach((file, index) => {
+            formData.append(`video_${index}`, file);
+        });
+
+        // Add form data
+        formData.append('title', title);
+        formData.append('category', category);
+        formData.append('platforms', JSON.stringify(selectedPlatforms));
+        formData.append('generateContent', generateContent);
+        
+        if (scheduleTime) {
+            formData.append('scheduleTime', scheduleTime);
+        }
+
+        // Add AI content if available
+        if (this.aiContent) {
+            formData.append('description', this.aiContent.description || '');
+            formData.append('hashtags', JSON.stringify(this.aiContent.hashtags || []));
+            formData.append('aiContent', JSON.stringify(this.aiContent));
+        }
+
+        this.showLoading('Uploading and processing your video...');
+
+        try {
+            const response = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                this.showToast(result.message, 'success');
+                
+                // Show results
+                this.displayUploadResults(result);
+                
+                // Reset form
+                form.reset();
+                this.clearContentPreview();
+                this.resetUploadArea();
+                
+                // Refresh data
+                this.loadScheduledPosts();
+                this.loadAnalytics();
+            } else {
+                throw new Error(result.error || 'Upload failed');
+            }
+        } catch (error) {
+            console.error('Upload error:', error);
+            this.showToast('Upload failed: ' + error.message, 'error');
+        } finally {
+            this.hideLoading();
+        }
+    }
+
+    displayUploadResults(result) {
+        // Create results modal
+        const modal = document.createElement('div');
+        modal.className = 'modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><i class="fas fa-check-circle"></i> Upload Results</h3>
+                    <button class="modal-close" onclick="this.closest('.modal').remove()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="result-summary">
+                        <h4>${result.data.title}</h4>
+                        <p><strong>Status:</strong> ${result.data.status}</p>
+                        <p><strong>Platforms:</strong> ${result.data.platforms.join(', ')}</p>
+                        ${result.viral_score ? `<p><strong>Viral Score:</strong> ${result.viral_score}/100</p>` : ''}
+                    </div>
+                    
+                    <div class="result-details">
+                        <h5>Generated Content:</h5>
+                        <p><strong>Description:</strong> ${result.data.description}</p>
+                        <div class="hashtags">
+                            <strong>Hashtags:</strong>
+                            ${result.data.hashtags.map(tag => `<span class="hashtag-chip">#${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="btn btn-primary" onclick="this.closest('.modal').remove()">Close</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        modal.style.display = 'block';
+    }
+
+    getSelectedPlatforms() {
+        const checkboxes = document.querySelectorAll('.platform-checkbox:checked');
+        return Array.from(checkboxes).map(cb => cb.value);
+    }
+
+    validateVideoFile(file) {
+        const allowedTypes = ['video/mp4', 'video/mov', 'video/avi', 'video/quicktime', 'video/x-msvideo'];
+        const maxSize = 500 * 1024 * 1024; // 500MB
+        
+        return allowedTypes.includes(file.type) && file.size <= maxSize;
+    }
+
     formatFileSize(bytes) {
         if (bytes === 0) return '0 Bytes';
         const k = 1024;
         const sizes = ['Bytes', 'KB', 'MB', 'GB'];
         const i = Math.floor(Math.log(bytes) / Math.log(k));
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-    },
-
-    // Format date
-    formatDate(dateString) {
-        return new Date(dateString).toLocaleString('pt-BR');
-    },
-
-    // Generate unique ID
-    generateId() {
-        return Date.now().toString(36) + Math.random().toString(36).substr(2);
-    },
-
-    // Debounce function
-    debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    }
-};
-
-// Toast Notification System
-const Toast = {
-    show(message, type = 'info', duration = 5000) {
-        const toast = document.createElement('div');
-        toast.className = `toast ${type}`;
-        toast.textContent = message;
-        
-        DOM.toastContainer.appendChild(toast);
-        
-        setTimeout(() => {
-            toast.style.animation = 'slideOut 0.3s ease forwards';
-            setTimeout(() => {
-                if (toast.parentNode) {
-                    toast.parentNode.removeChild(toast);
-                }
-            }, 300);
-        }, duration);
-    },
-
-    success(message) {
-        this.show(message, 'success');
-    },
-
-    error(message) {
-        this.show(message, 'error');
-    },
-
-    info(message) {
-        this.show(message, 'info');
-    }
-};
-
-// API Service
-const ApiService = {
-    baseUrl: '/api',
-
-    async request(endpoint, options = {}) {
-        try {
-            const response = await fetch(`${this.baseUrl}${endpoint}`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    ...options.headers
-                },
-                ...options
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            return await response.json();
-        } catch (error) {
-            console.error('API request failed:', error);
-            throw error;
-        }
-    },
-
-    // Upload video
-    async uploadVideo(formData) {
-        const response = await fetch(`${this.baseUrl}/upload`, {
-            method: 'POST',
-            body: formData
-        });
-        
-        if (!response.ok) {
-            throw new Error('Upload failed');
-        }
-        
-        return await response.json();
-    },
-
-    // Generate content with AI
-    async generateContent(title, category, platforms) {
-        return await this.request('/generate-content', {
-            method: 'POST',
-            body: JSON.stringify({ title, category, platforms })
-        });
-    },
-
-    // Schedule post
-    async schedulePost(postData) {
-        return await this.request('/schedule', {
-            method: 'POST',
-            body: JSON.stringify(postData)
-        });
-    },
-
-    // Get scheduled posts
-    async getScheduledPosts(filters = {}) {
-        const params = new URLSearchParams(filters);
-        return await this.request(`/schedule?${params}`);
-    },
-
-    // Connect social media account
-    async connectAccount(platform, credentials) {
-        return await this.request('/accounts/connect', {
-            method: 'POST',
-            body: JSON.stringify({ platform, ...credentials })
-        });
-    },
-
-    // Get account status
-    async getAccountStatus() {
-        return await this.request('/accounts/status');
-    },
-
-    // Get analytics
-    async getAnalytics(dateRange) {
-        return await this.request(`/analytics?range=${dateRange}`);
-    },
-
-    // Post to platforms
-    async postToPlatforms(postData) {
-        return await this.request('/post', {
-            method: 'POST',
-            body: JSON.stringify(postData)
-        });
-    }
-};
-
-// Navigation Handler
-class Navigation {
-    init() {
-        DOM.navButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const section = e.target.dataset.section;
-                this.switchSection(section);
-            });
-        });
     }
 
-    switchSection(sectionName) {
-        // Update nav buttons
-        DOM.navButtons.forEach(btn => btn.classList.remove('active'));
-        document.querySelector(`[data-section="${sectionName}"]`).classList.add('active');
-
-        // Update sections
-        DOM.sections.forEach(section => section.classList.remove('active'));
-        document.getElementById(sectionName).classList.add('active');
-
-        appState.currentSection = sectionName;
-
-        // Load section-specific data
-        this.loadSectionData(sectionName);
-    }
-
-    async loadSectionData(sectionName) {
-        switch (sectionName) {
-            case 'accounts':
-                await AccountManager.loadAccountStatus();
-                break;
-            case 'schedule':
-                await ScheduleManager.loadScheduledPosts();
-                break;
-            case 'analytics':
-                await AnalyticsManager.loadAnalytics();
-                break;
-        }
-    }
-}
-
-// Upload Manager
-class UploadManager {
-    init() {
-        this.setupDragAndDrop();
-        this.setupFileInput();
-        this.setupForm();
-        this.setupPlatformSelection();
-    }
-
-    setupDragAndDrop() {
-        DOM.uploadArea.addEventListener('click', () => {
-            DOM.videoInput.click();
-        });
-
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            DOM.uploadArea.addEventListener(eventName, this.preventDefaults, false);
-        });
-
-        ['dragenter', 'dragover'].forEach(eventName => {
-            DOM.uploadArea.addEventListener(eventName, () => {
-                DOM.uploadArea.classList.add('dragover');
-            }, false);
-        });
-
-        ['dragleave', 'drop'].forEach(eventName => {
-            DOM.uploadArea.addEventListener(eventName, () => {
-                DOM.uploadArea.classList.remove('dragover');
-            }, false);
-        });
-
-        DOM.uploadArea.addEventListener('drop', this.handleDrop.bind(this), false);
-    }
-
-    setupFileInput() {
-        DOM.videoInput.addEventListener('change', (e) => {
-            this.handleFiles(e.target.files);
-        });
-    }
-
-    setupForm() {
-        DOM.uploadForm.addEventListener('submit', this.handleSubmit.bind(this));
-    }
-
-    setupPlatformSelection() {
-        DOM.platformCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const checkbox = card.querySelector('.platform-checkbox');
-                checkbox.checked = !checkbox.checked;
-                card.classList.toggle('selected', checkbox.checked);
-            });
-        });
-
-        DOM.platformCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', (e) => {
-                const card = e.target.closest('.platform-card');
-                card.classList.toggle('selected', e.target.checked);
-            });
-        });
-    }
-
-    preventDefaults(e) {
-        e.preventDefault();
-        e.stopPropagation();
-    }
-
-    handleDrop(e) {
-        const dt = e.dataTransfer;
-        const files = dt.files;
-        this.handleFiles(files);
-    }
-
-    handleFiles(files) {
-        Array.from(files).forEach(file => {
-            if (this.validateFile(file)) {
-                this.displayFile(file);
-                appState.uploadedFiles.push(file);
-            }
-        });
-    }
-
-    validateFile(file) {
-        const maxSize = 500 * 1024 * 1024; // 500MB
-        const allowedTypes = ['video/mp4', 'video/mov', 'video/avi', 'video/quicktime'];
-
-        if (!allowedTypes.includes(file.type)) {
-            Toast.error('Formato de arquivo não suportado. Use MP4, MOV ou AVI.');
-            return false;
-        }
-
-        if (file.size > maxSize) {
-            Toast.error('Arquivo muito grande. Máximo 500MB.');
-            return false;
-        }
-
-        return true;
-    }
-
-    displayFile(file) {
-        const uploadContent = DOM.uploadArea.querySelector('.upload-content');
+    resetUploadArea() {
+        const uploadContent = document.querySelector('.upload-content');
         uploadContent.innerHTML = `
-            <i class="fas fa-check-circle" style="color: #2ed573;"></i>
-            <h3>Arquivo selecionado</h3>
-            <p><strong>${file.name}</strong> (${Utils.formatFileSize(file.size)})</p>
-            <small>Clique para selecionar outros arquivos</small>
-        `;
-    }
-
-    async handleSubmit(e) {
-        e.preventDefault();
-        
-        if (appState.uploadedFiles.length === 0) {
-            Toast.error('Selecione pelo menos um arquivo de vídeo.');
-            return;
-        }
-
-        const selectedPlatforms = Array.from(DOM.platformCheckboxes)
-            .filter(cb => cb.checked)
-            .map(cb => cb.value);
-
-        if (selectedPlatforms.length === 0) {
-            Toast.error('Selecione pelo menos uma plataforma.');
-            return;
-        }
-
-        this.showLoading(true);
-
-        try {
-            const formData = new FormData();
-            
-            // Add files
-            appState.uploadedFiles.forEach((file, index) => {
-                formData.append(`video_${index}`, file);
-            });
-
-            // Add form data
-            formData.append('title', DOM.videoTitle.value);
-            formData.append('category', DOM.videoCategory.value);
-            formData.append('platforms', JSON.stringify(selectedPlatforms));
-            formData.append('generateContent', DOM.generateContent.checked);
-            formData.append('scheduleTime', DOM.scheduleTime.value);
-
-            const response = await ApiService.uploadVideo(formData);
-            
-            Toast.success('Vídeo processado com sucesso!');
-            this.resetForm();
-
-            // If scheduled, add to schedule list
-            if (DOM.scheduleTime.value) {
-                appState.scheduledPosts.push(response);
-            }
-
-        } catch (error) {
-            Toast.error('Erro ao processar vídeo: ' + error.message);
-        } finally {
-            this.showLoading(false);
-        }
-    }
-
-    showLoading(show) {
-        DOM.loadingOverlay.classList.toggle('show', show);
-    }
-
-    resetForm() {
-        DOM.uploadForm.reset();
-        appState.uploadedFiles = [];
-        
-        DOM.platformCards.forEach(card => {
-            card.classList.remove('selected');
-        });
-
-        DOM.uploadArea.querySelector('.upload-content').innerHTML = `
             <i class="fas fa-cloud-upload-alt"></i>
             <h3>Arraste seus vídeos aqui</h3>
             <p>ou <span class="upload-link">clique para selecionar</span></p>
             <small>Formatos suportados: MP4, MOV, AVI (máx. 500MB)</small>
         `;
     }
-}
 
-// Account Manager
-class AccountManager {
-    init() {
-        this.setupConnectButtons();
-        this.setupModal();
-    }
-
-    setupConnectButtons() {
-        DOM.connectButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const platform = e.target.dataset.platform;
-                this.showConnectionModal(platform);
+    setupPlatformCards() {
+        const platformCards = document.querySelectorAll('.platform-card');
+        platformCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const checkbox = card.querySelector('.platform-checkbox');
+                checkbox.checked = !checkbox.checked;
+                card.classList.toggle('selected', checkbox.checked);
             });
         });
     }
 
-    setupModal() {
-        const modal = DOM.accountModal;
-        const closeBtn = modal.querySelector('.modal-close');
-
-        closeBtn.addEventListener('click', () => {
-            this.hideModal();
+    setupAccountManagement() {
+        const connectButtons = document.querySelectorAll('.btn-connect');
+        connectButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const platform = e.target.dataset.platform;
+                this.connectPlatform(platform);
+            });
         });
+    }
 
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                this.hideModal();
+    async connectPlatform(platform) {
+        if (platform === 'youtube') {
+            try {
+                const response = await fetch('/oauth/youtube/start');
+                const result = await response.json();
+                
+                if (result.auth_url) {
+                    // Open OAuth window
+                    const popup = window.open(result.auth_url, 'youtube_auth', 'width=500,height=600');
+                    
+                    // Monitor popup
+                    const checkClosed = setInterval(() => {
+                        if (popup.closed) {
+                            clearInterval(checkClosed);
+                            // Check connection status
+                            this.checkPlatformConnection('youtube');
+                        }
+                    }, 1000);
+                }
+            } catch (error) {
+                this.showToast('Failed to start YouTube authentication', 'error');
             }
-        });
+        } else {
+            // For other platforms, show connection modal
+            this.showConnectionModal(platform);
+        }
     }
 
     showConnectionModal(platform) {
-        DOM.modalTitle.textContent = `Conectar ${platform}`;
-        DOM.modalBody.innerHTML = this.getConnectionForm(platform);
-        DOM.accountModal.classList.add('show');
-
-        // Setup form submission
-        const form = DOM.modalBody.querySelector('form');
-        if (form) {
-            form.addEventListener('submit', (e) => this.handleConnection(e, platform));
-        }
-    }
-
-    getConnectionForm(platform) {
-        const forms = {
-            youtube: `
-                <form>
-                    <div class="form-group">
-                        <label>API Key do YouTube</label>
-                        <input type="text" name="apiKey" placeholder="Sua API Key" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Channel ID</label>
-                        <input type="text" name="channelId" placeholder="ID do seu canal" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Conectar</button>
-                </form>
-            `,
+        const modal = document.getElementById('accountModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        
+        modalTitle.textContent = `Connect ${platform.charAt(0).toUpperCase() + platform.slice(1)}`;
+        
+        // Platform-specific connection forms
+        const connectionForms = {
             instagram: `
-                <form>
+                <form id="connectForm">
                     <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" name="username" placeholder="Seu username" required>
+                        <label>Access Token:</label>
+                        <input type="text" name="access_token" required>
                     </div>
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" name="password" placeholder="Sua senha" required>
+                        <label>User ID:</label>
+                        <input type="text" name="user_id" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Conectar</button>
+                    <button type="submit" class="btn btn-primary">Connect</button>
                 </form>
             `,
             tiktok: `
-                <form>
+                <form id="connectForm">
                     <div class="form-group">
-                        <label>Access Token</label>
-                        <input type="text" name="accessToken" placeholder="Seu access token" required>
+                        <label>Access Token:</label>
+                        <input type="text" name="access_token" required>
                     </div>
                     <div class="form-group">
-                        <label>User ID</label>
-                        <input type="text" name="userId" placeholder="Seu user ID" required>
+                        <label>Open ID:</label>
+                        <input type="text" name="open_id" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Conectar</button>
+                    <button type="submit" class="btn btn-primary">Connect</button>
                 </form>
             `,
             kawai: `
-                <form>
+                <form id="connectForm">
                     <div class="form-group">
-                        <label>API Key</label>
-                        <input type="text" name="apiKey" placeholder="Sua API Key" required>
+                        <label>API Key:</label>
+                        <input type="text" name="api_key" required>
                     </div>
                     <div class="form-group">
-                        <label>User ID</label>
-                        <input type="text" name="userId" placeholder="Seu user ID" required>
+                        <label>User ID:</label>
+                        <input type="text" name="user_id" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Conectar</button>
+                    <button type="submit" class="btn btn-primary">Connect</button>
                 </form>
             `
         };
-
-        return forms[platform] || '<p>Formulário não disponível para esta plataforma.</p>';
+        
+        modalBody.innerHTML = connectionForms[platform] || '<p>Connection form not available</p>';
+        
+        // Handle form submission
+        const form = document.getElementById('connectForm');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.handlePlatformConnection(platform, form);
+            });
+        }
+        
+        modal.style.display = 'block';
     }
 
-    async handleConnection(e, platform) {
-        e.preventDefault();
-        
-        const formData = new FormData(e.target);
-        const credentials = Object.fromEntries(formData);
+    async handlePlatformConnection(platform, form) {
+        const formData = new FormData(form);
+        const credentials = Object.fromEntries(formData.entries());
+        credentials.platform = platform;
 
         try {
-            const response = await ApiService.connectAccount(platform, credentials);
-            
-            if (response.success) {
-                Toast.success(`Conta ${platform} conectada com sucesso!`);
-                this.updateAccountStatus(platform, true);
-                appState.connectedAccounts.add(platform);
-                this.hideModal();
+            const response = await fetch('/api/accounts/connect', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(credentials)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                this.showToast(result.message, 'success');
+                document.getElementById('accountModal').style.display = 'none';
+                this.updatePlatformStatus(platform, 'connected');
             } else {
-                Toast.error(response.message || 'Erro ao conectar conta');
+                this.showToast(result.message || 'Connection failed', 'error');
             }
         } catch (error) {
-            Toast.error('Erro ao conectar conta: ' + error.message);
+            this.showToast('Connection failed: ' + error.message, 'error');
         }
     }
 
-    updateAccountStatus(platform, connected) {
+    async checkPlatformConnection(platform) {
+        try {
+            const response = await fetch('/api/accounts/status');
+            const result = await response.json();
+            
+            if (result.success && result.accounts[platform]) {
+                this.updatePlatformStatus(platform, result.accounts[platform].status);
+            }
+        } catch (error) {
+            console.error('Failed to check platform status:', error);
+        }
+    }
+
+    updatePlatformStatus(platform, status) {
         const accountCard = document.querySelector(`.account-card.${platform}`);
         if (accountCard) {
-            const statusSpan = accountCard.querySelector('.status');
+            const statusElement = accountCard.querySelector('.status');
             const button = accountCard.querySelector('.btn-connect');
             
-            if (connected) {
-                statusSpan.textContent = 'Conectado';
-                statusSpan.className = 'status connected';
-                button.innerHTML = '<i class="fas fa-unlink"></i> Desconectar';
+            if (status === 'connected') {
+                statusElement.textContent = 'Conectado';
+                statusElement.className = 'status connected';
+                button.textContent = 'Desconectar';
+                button.className = 'btn btn-disconnect';
+                this.connectedPlatforms.add(platform);
             } else {
-                statusSpan.textContent = 'Desconectado';
-                statusSpan.className = 'status disconnected';
-                button.innerHTML = '<i class="fas fa-link"></i> Conectar Conta';
+                statusElement.textContent = 'Desconectado';
+                statusElement.className = 'status disconnected';
+                button.textContent = 'Conectar Conta';
+                button.className = 'btn btn-connect';
+                this.connectedPlatforms.delete(platform);
             }
         }
     }
 
-    async loadAccountStatus() {
-        try {
-            const response = await ApiService.getAccountStatus();
-            
-            Object.entries(response.accounts).forEach(([platform, status]) => {
-                this.updateAccountStatus(platform, status.connected);
-                if (status.connected) {
-                    appState.connectedAccounts.add(platform);
-                }
-            });
-        } catch (error) {
-            console.error('Erro ao carregar status das contas:', error);
+    showSection(sectionName) {
+        // Hide all sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        // Show target section
+        document.getElementById(sectionName).classList.add('active');
+        
+        // Update nav buttons
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.querySelector(`[data-section="${sectionName}"]`).classList.add('active');
+        
+        this.currentSection = sectionName;
+        
+        // Load section-specific data
+        switch(sectionName) {
+            case 'schedule':
+                this.loadScheduledPosts();
+                break;
+            case 'analytics':
+                this.loadAnalytics();
+                break;
+            case 'accounts':
+                this.loadAccountStatus();
+                break;
         }
-    }
-
-    hideModal() {
-        DOM.accountModal.classList.remove('show');
-    }
-}
-
-// Schedule Manager
-class ScheduleManager {
-    init() {
-        this.setupFilters();
-    }
-
-    setupFilters() {
-        DOM.platformFilter.addEventListener('change', this.filterSchedule.bind(this));
-        DOM.dateFilter.addEventListener('change', this.filterSchedule.bind(this));
     }
 
     async loadScheduledPosts() {
         try {
-            const filters = {
-                platform: DOM.platformFilter.value,
-                date: DOM.dateFilter.value
-            };
-
-            const response = await ApiService.getScheduledPosts(filters);
-            this.renderScheduledPosts(response.posts);
+            const response = await fetch('/api/schedule');
+            const result = await response.json();
+            
+            if (result.success) {
+                this.displayScheduledPosts(result.posts);
+            }
         } catch (error) {
-            console.error('Erro ao carregar agendamentos:', error);
-            Toast.error('Erro ao carregar agendamentos');
+            console.error('Failed to load scheduled posts:', error);
         }
     }
 
-    renderScheduledPosts(posts) {
-        if (!posts || posts.length === 0) {
-            DOM.scheduleList.innerHTML = `
-                <div style="text-align: center; color: rgba(255,255,255,0.7); padding: 40px;">
-                    <i class="fas fa-calendar" style="font-size: 3rem; margin-bottom: 20px;"></i>
-                    <h3>Nenhum agendamento encontrado</h3>
-                    <p>Seus posts agendados aparecerão aqui</p>
-                </div>
-            `;
+    displayScheduledPosts(posts) {
+        const scheduleList = document.getElementById('scheduleList');
+        
+        if (posts.length === 0) {
+            scheduleList.innerHTML = '<p class="no-data">Nenhum post agendado encontrado</p>';
             return;
         }
-
-        const postsHtml = posts.map(post => `
-            <div class="schedule-item" data-id="${post.id}">
-                <div class="schedule-content">
+        
+        scheduleList.innerHTML = posts.map(post => `
+            <div class="schedule-item" data-post-id="${post.id}">
+                <div class="schedule-info">
                     <h4>${post.title}</h4>
-                    <p><strong>Plataformas:</strong> ${post.platforms.join(', ')}</p>
-                    <p><strong>Agendado para:</strong> ${Utils.formatDate(post.scheduledTime)}</p>
-                    <div class="schedule-status status ${post.status}">${post.status}</div>
+                    <p>Plataformas: ${post.platforms.join(', ')}</p>
+                    <p>Data: ${new Date(post.schedule_time).toLocaleString()}</p>
                 </div>
                 <div class="schedule-actions">
-                    <button class="btn-edit" onclick="scheduleManager.editPost('${post.id}')">
-                        <i class="fas fa-edit"></i>
+                    <button class="btn btn-sm btn-secondary" onclick="app.editScheduledPost('${post.id}')">
+                        <i class="fas fa-edit"></i> Editar
                     </button>
-                    <button class="btn-delete" onclick="scheduleManager.deletePost('${post.id}')">
-                        <i class="fas fa-trash"></i>
+                    <button class="btn btn-sm btn-danger" onclick="app.cancelScheduledPost('${post.id}')">
+                        <i class="fas fa-trash"></i> Cancelar
                     </button>
                 </div>
             </div>
         `).join('');
-
-        DOM.scheduleList.innerHTML = postsHtml;
     }
 
-    filterSchedule() {
-        this.loadScheduledPosts();
-    }
-
-    editPost(postId) {
-        Toast.info('Funcionalidade de edição em desenvolvimento');
-    }
-
-    async deletePost(postId) {
-        if (confirm('Tem certeza que deseja cancelar este agendamento?')) {
-            try {
-                await ApiService.request(`/schedule/${postId}`, { method: 'DELETE' });
-                Toast.success('Agendamento cancelado');
-                this.loadScheduledPosts();
-            } catch (error) {
-                Toast.error('Erro ao cancelar agendamento');
-            }
+    async cancelScheduledPost(postId) {
+        if (!confirm('Tem certeza que deseja cancelar este post agendado?')) {
+            return;
         }
-    }
-}
 
-// Analytics Manager
-class AnalyticsManager {
-    constructor() {
-        this.chart = null;
+        try {
+            const response = await fetch(`/api/schedule/${postId}`, {
+                method: 'DELETE'
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                this.showToast('Post cancelado com sucesso', 'success');
+                this.loadScheduledPosts();
+            } else {
+                throw new Error(result.error);
+            }
+        } catch (error) {
+            this.showToast('Erro ao cancelar post: ' + error.message, 'error');
+        }
     }
 
     async loadAnalytics() {
         try {
-            const response = await ApiService.getAnalytics('30d');
-            this.updateAnalyticsCards(response.summary);
-            this.renderChart(response.chartData);
+            const response = await fetch('/api/analytics?range=30d');
+            const result = await response.json();
+            
+            if (result.success) {
+                this.displayAnalytics(result);
+            }
         } catch (error) {
-            console.error('Erro ao carregar analytics:', error);
-            Toast.error('Erro ao carregar analytics');
+            console.error('Failed to load analytics:', error);
         }
     }
 
-    updateAnalyticsCards(data) {
-        DOM.analyticsElements.totalViews.textContent = this.formatNumber(data.views);
-        DOM.analyticsElements.totalLikes.textContent = this.formatNumber(data.likes);
-        DOM.analyticsElements.totalShares.textContent = this.formatNumber(data.shares);
-        DOM.analyticsElements.totalPosts.textContent = this.formatNumber(data.posts);
+    displayAnalytics(data) {
+        const summary = data.summary || {};
         
-        appState.analytics = data;
+        // Update summary cards
+        document.getElementById('totalViews').textContent = this.formatNumber(summary.views || 0);
+        document.getElementById('totalLikes').textContent = this.formatNumber(summary.likes || 0);
+        document.getElementById('totalShares').textContent = this.formatNumber(summary.shares || 0);
+        document.getElementById('totalPosts').textContent = this.formatNumber(summary.posts || 0);
+        
+        // Update chart if available
+        this.updatePerformanceChart(data.chartData || {});
+    }
+
+    updatePerformanceChart(chartData) {
+        const canvas = document.getElementById('performanceChart');
+        const ctx = canvas.getContext('2d');
+        
+        // Simple chart implementation (you might want to use Chart.js for more features)
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#3498db';
+        ctx.fillRect(10, 10, 100, 50);
+        ctx.fillStyle = '#fff';
+        ctx.font = '14px Arial';
+        ctx.fillText('Performance Chart', 20, 35);
+    }
+
+    async loadAccountStatus() {
+        try {
+            const response = await fetch('/api/accounts/status');
+            const result = await response.json();
+            
+            if (result.success) {
+                Object.keys(result.accounts).forEach(platform => {
+                    this.updatePlatformStatus(platform, result.accounts[platform].status);
+                });
+            }
+        } catch (error) {
+            console.error('Failed to load account status:', error);
+        }
+    }
+
+    async loadInitialData() {
+        await this.loadAccountStatus();
     }
 
     formatNumber(num) {
@@ -695,171 +794,60 @@ class AnalyticsManager {
         return num.toString();
     }
 
-    renderChart(data) {
-        const canvas = document.getElementById('performanceChart');
-        const ctx = canvas.getContext('2d');
-
-        // Destroy existing chart
-        if (this.chart) {
-            this.chart.destroy();
-        }
-
-        // Create gradient
-        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-        gradient.addColorStop(0, 'rgba(255, 107, 107, 0.8)');
-        gradient.addColorStop(1, 'rgba(254, 202, 87, 0.1)');
-
-        this.chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: data.labels,
-                datasets: [{
-                    label: 'Visualizações',
-                    data: data.views,
-                    borderColor: '#ff6b6b',
-                    backgroundColor: gradient,
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: 'white'
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        ticks: {
-                            color: 'white'
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        }
-                    },
-                    y: {
-                        ticks: {
-                            color: 'white'
-                        },
-                        grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        }
-                    }
-                }
+    showToast(message, type = 'info') {
+        const toastContainer = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        toast.innerHTML = `
+            <i class="fas fa-${this.getToastIcon(type)}"></i>
+            <span>${message}</span>
+            <button class="toast-close" onclick="this.parentElement.remove()">&times;</button>
+        `;
+        
+        toastContainer.appendChild(toast);
+        
+        // Auto remove after 5 seconds
+        setTimeout(() => {
+            if (toast.parentElement) {
+                toast.remove();
             }
-        });
+        }, 5000);
+    }
+
+    getToastIcon(type) {
+        const icons = {
+            success: 'check-circle',
+            error: 'exclamation-circle',
+            warning: 'exclamation-triangle',
+            info: 'info-circle'
+        };
+        return icons[type] || 'info-circle';
+    }
+
+    showLoading(message = 'Loading...') {
+        const overlay = document.getElementById('loadingOverlay');
+        const loadingContent = overlay.querySelector('.loading-content p');
+        loadingContent.textContent = message;
+        overlay.style.display = 'flex';
+    }
+
+    hideLoading() {
+        document.getElementById('loadingOverlay').style.display = 'none';
     }
 }
-
-// App Initialization
-class App {
-    constructor() {
-        this.navigation = new Navigation();
-        this.uploadManager = new UploadManager();
-        this.accountManager = new AccountManager();
-        this.scheduleManager = new ScheduleManager();
-        this.analyticsManager = new AnalyticsManager();
-    }
-
-    init() {
-        // Initialize all components
-        this.navigation.init();
-        this.uploadManager.init();
-        this.accountManager.init();
-        this.scheduleManager.init();
-
-        // Load initial data
-        this.loadInitialData();
-
-        // Setup global error handling
-        window.addEventListener('error', this.handleGlobalError);
-        window.addEventListener('unhandledrejection', this.handleGlobalError);
-    }
-
-    async loadInitialData() {
-        try {
-            // Load account status
-            await this.accountManager.loadAccountStatus();
-        } catch (error) {
-            console.error('Erro ao carregar dados iniciais:', error);
-        }
-    }
-
-    handleGlobalError(event) {
-        console.error('Global error:', event.error || event.reason);
-        Toast.error('Ocorreu um erro inesperado. Tente novamente.');
-    }
-}
-
-// Global instances
-const app = new App();
-const scheduleManager = app.scheduleManager; // For global access
 
 // Initialize app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    app.init();
+    window.app = new SocialMediaApp();
 });
 
-// Add CSS for schedule items
-const additionalCSS = `
-<style>
-.schedule-item {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-left: 4px solid #feca57;
-}
-
-.schedule-content h4 {
-    color: white;
-    margin-bottom: 10px;
-}
-
-.schedule-content p {
-    color: rgba(255, 255, 255, 0.8);
-    margin: 5px 0;
-    font-size: 0.9rem;
-}
-
-.schedule-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.btn-edit, .btn-delete {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-edit:hover {
-    background: rgba(254, 202, 87, 0.3);
-}
-
-.btn-delete:hover {
-    background: rgba(255, 107, 107, 0.3);
-}
-
-@keyframes slideOut {
-    to {
-        transform: translateX(100%);
-        opacity: 0;
+// Modal functionality
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('modal-close')) {
+        e.target.closest('.modal').style.display = 'none';
     }
-}
-</style>
-`;
-
-document.head.insertAdjacentHTML('beforeend', additionalCSS);
+    
+    if (e.target.classList.contains('modal')) {
+        e.target.style.display = 'none';
+    }
+});
