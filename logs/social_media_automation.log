@@ -1557,3 +1557,27 @@
 2025-10-04 18:23:18,033 - werkzeug - INFO - _internal.py:187 - 127.0.0.1 - - [04/Oct/2025 18:23:18] "GET /api/accounts/status HTTP/1.1" 200 -
 2025-10-04 18:23:19,689 - werkzeug - INFO - _internal.py:187 - 127.0.0.1 - - [04/Oct/2025 18:23:19] "GET /oauth/youtube/start HTTP/1.1" 200 -
 2025-10-04 18:23:21,823 - werkzeug - INFO - _internal.py:187 - 127.0.0.1 - - [04/Oct/2025 18:23:21] "GET /api/accounts/status HTTP/1.1" 200 -
+2025-10-04 19:14:50,682 - werkzeug - INFO - _internal.py:187 -  * Detected change in 'C:\\Users\\Wilker Gandra\\Documents\\GitHub\\videos_automacoes\\run.py', reloading
+2025-10-04 19:14:50,683 - services.scheduler - INFO - scheduler.py:18 - PostScheduler parado
+2025-10-04 19:14:50,683 - app - INFO - app.py:790 - Application shutdown complete
+2025-10-04 19:14:50,950 - werkzeug - INFO - _internal.py:187 -  * Restarting with stat
+2025-10-04 19:14:52,916 - root - INFO - logger.py:49 - Social Media Automation System logging initialized
+2025-10-04 19:14:52,918 - __main__ - WARNING - run.py:50 - Configuration warnings:
+2025-10-04 19:14:52,918 - __main__ - WARNING - run.py:52 -   - Missing API keys for: YouTube, Instagram, TikTok, Kawai
+2025-10-04 19:14:52,919 - __main__ - WARNING - run.py:52 -   - Please change the default JWT_SECRET_KEY in production
+2025-10-04 19:14:52,922 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-10-04 19:14:52,923 - services.ai_service - ERROR - ai_service.py:26 - Failed to initialize OpenAI client: AsyncClient.__init__() got an unexpected keyword argument 'proxies'
+2025-10-04 19:14:52,944 - app - INFO - app.py:59 - Social Media Automation System initialized successfully
+2025-10-04 19:14:52,945 - __main__ - INFO - run.py:62 - Starting Social Media Automation System
+2025-10-04 19:14:52,945 - __main__ - INFO - run.py:63 - Host: 0.0.0.0, Port: 5000, Debug: True
+2025-10-04 19:14:52,946 - __main__ - INFO - run.py:64 - Upload folder: uploads
+2025-10-04 19:14:52,949 - __main__ - INFO - run.py:68 - Enabled platforms: None
+2025-10-04 19:14:52,956 - __main__ - WARNING - run.py:71 - No platforms are properly configured. Please check your API keys.
+2025-10-04 19:14:52,959 - models.database - INFO - database.py:102 - Database initialized successfully
+2025-10-04 19:14:52,960 - services.scheduler - INFO - scheduler.py:13 - PostScheduler iniciado
+2025-10-04 19:14:52,961 - app - INFO - app.py:763 - Application context initialized successfully
+2025-10-04 19:14:52,970 - app - INFO - app.py:775 - Starting Social Media Automation System on 0.0.0.0:5000
+2025-10-04 19:14:52,972 - app - INFO - app.py:776 - Debug mode: True
+2025-10-04 19:14:52,973 - app - INFO - app.py:777 - Upload folder: uploads
+2025-10-04 19:14:52,994 - werkzeug - WARNING - _internal.py:187 -  * Debugger is active!
+2025-10-04 19:14:53,002 - werkzeug - INFO - _internal.py:187 -  * Debugger PIN: 876-337-494
