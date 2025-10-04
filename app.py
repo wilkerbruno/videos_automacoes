@@ -32,6 +32,11 @@ from flask import Flask
 
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+    """Serve the main application page"""
+    return render_template('index.html')
+
 
 # Setup logging
 setup_logging()
